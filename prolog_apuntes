@@ -1,0 +1,128 @@
+como se carga un archivo
+	['nombrearchivo.pl'].
+---------------------------------
+para entrar a backtraking (explorar todas las opciones)
+	trace.
+
+	aqui dentro dar intros y cuando eche una solucion poner ';' para que siga el backtraking
+
+para salir:
+	nodebug.
+----------------------------------
+comparadores:
+	<	menor
+	>	mayor
+	=\=	distinto
+	=:=	igual
+	=< menor o igual
+	>= mayor o igual
+
+operadores:
+	Potencia				^ ó **
+	Producto				*
+	División				/
+	División entera			//
+	Resto división entera	mod
+	Suma					+
+	Signo positivo			+
+	Resta					-
+	Signo negativo			-
+	Igualdad				=
+	Distinto				\=
+	Evaluación aritmética	is
+
+-----------------------------------
+	
+/*esto son hechos*/
+/*comentarlos siemopre*/
+/*	ha_aprobado(persona,asignatura).	Persona ha aprobado asignatura*/
+ha_aprobado(juan,lmd).
+ha_aprobado(maria,lmd).
+ha_aprobado(maria,alem).
+ha_aprobado(juan,alem).
+ha_aprobado(julia,lmd).
+
+*/esto es una regla que se aplica con los hechos*/
+
+aprueba_mates(X):-
+ha_aprobado(X,alem).
+ha_aprobado(X,lmd).
+
+	//si no me interesa algun atributo como por ejemplo si tubiera aprueba_mates(X,Y) donde Y fuera
+	 la nota, se pone un '_' y se omite
+----------------------------------------
+CONJUNCION (y) 		(devulelve true si se cumplen las dos)
+	Se pone una coma entre frases:
+		ha_aprobado(maria,alem),ha_aprobado(juan,alem).	 
+DISYUNCION (O)		(devulve true si se cumple alguna de las dos)
+	Se pone punto y coma entre las frases:
+		ha_aprobado(maria,alem);ha_aprobado(maria,alem).
+CONDICIONAL (:-)	(si...(pasa algo).....entonces.....(pasa otra cosa)) //SIRVE PARA DEFINIR REGLAS
+	Ejemplo1:
+		novios(X,Y) :- le_gusta_a(X,Y), le_gusta_a(Y,X).
+	Ejemplo2:
+		hermana_de(X,Y) :- mujer(X), es_padre_de(P,X), es_madre_de(M,X), es_padre_de(P,Y), es_madre_de(M,Y).
+
+	
+----------------------------------------
+*/LISTAS*/
+
+Sea [a,b,c,d] una lista las listas se definen como 
+L=[X|Y] siendo X la cabeza [a] y Y la cola [b,c,d]
+-----------------------------------------------------------------------------------------------------
+Ejercicio1. Ejercicio 1. Escribir una base de datos en PROLOG que contenga lo siguiente:
+...
+...
+...
+Plantear distintos objetivos a PROLOG que devuelvan true o false:
+es_mujer(maria).
+juega_a_poker(maria).
+juega_a_poker(pepe).
+asiste_a(belen,lmd).
+asiste_a(pepe,lmd).
+asiste_a(julia,alem).
+
+--------------------------------------------------------------------------------------------------------
+
+Ejercicio 3. Cargar la base de datos pizza.pl que acompa˜na a la pr´actica 7 e interpretar su contenido.
+Utilizar PROLOG para encontrar:
+(1) todas las pizzer´ıas frecuentadas por al menos un hombre;
+	persona(X,_,hombre),frecuenta(X,Z).
+(2) todas las mujeres que comen pizzas funghi y pepperoni;
+	persona(X,_,mujer),come(X,fungui),come(X,pepperoni).
+(3) todas las mujeres que comen pizzas funghi o pepperoni.
+	persona(X,_,mujer);come(X,fungui),come(X,pepperoni).
+
+--------------------------------------------------------------------------------------------------------
+
+
+Ejercicio 4. Usando la base de datos pizza.pl, encontrar lo siguiente:
+(1) todas las pizzer´ıas que sirven una pizza, por menos de 8 euros, comida por Diana.
+	come(diana,X),sirve(X,Y,Z),Z<8.
+(2) todas las pizzer´ıas frecuentadas por al menos una persona menor de edad.
+	persona(A,B,C),B<18,frecuenta(A,Z).
+
+-----------------------------------------------------------------------------------------------------------
+Ejercicio5. Crear una base de datos familia.pl que contenga lo siguiente:
+	1)¿Que objetivo hay que plantear a PROLOG para obtener como respuesta los nietos de ana?
+		es_abuela_de(ana,X).
+	2)Crear una regla es_tio_de(T,S) que devuelva true si T es el/la tıa de S.
+		es_tio_de(T,S):- 
+			son_hermanos(T,P),
+			es_progenitor_de(P,S).
+
+
+-----------------------------------------------------------------------------------------------------------
+Ejercicio 7. Definir, de forma recursiva, una funci´on factorial(N,F) que devuelva true si F es el
+factorial de N. Usar la funci´on para obtener el factorial de 17.
+	esta en factorial.pl
+
+
+
+
+
+
+
+
+
+

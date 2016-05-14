@@ -1,0 +1,781 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 14.12.1 ] */
+
+/* [wxMaxima: title   start ]
+Práctica 8. Inducción y recurrencia.
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: section start ]
+Término general de una suma de términos.
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+En algunos ejercicios de inducción se plantea calcular el término general de una suma de términos. 
+Para calcular esto en Maxima tenemos a nuestra disposición los comandos sum y simpsum. Por ejemplo, 
+para calcular el término general de la suma 1 + 2 + 3 + ... + n, podemos proceder como sigue:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+sum(i,i,1,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sum(i,i,1,n),simpsum;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Si el comando simpsum no resultara efectivo en el cálculo de la suma, podemos utilizar simplify_sum, 
+que recibe como argumento una suma de términos y devuelve la expresión de su suma. Para ello habremos 
+de cargar previamente el paquete "simplify\_sum":
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(simplify\_sum);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+EJERCICIO 1. Calcular el término general de las siguientes sumas de términos:
+
+1). 1 + 2^2 + 3^2 + ... + n^2
+
+2). 1 + 2^3 + 3^3 + ... + 4^3
+
+3). sum_{i=1}^n (2i-1) //suma de los impares
+
+4). sum_{i=1}^n (1/2i)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+1)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+sum(i²,i,1,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sum(i²,i,1,n),simpsum;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+2) lo mismo pero al cubo
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+3)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+sum(2*i+1,i,1,n),simpsum;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Demostraciones por inducción.
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+EJERCICIO 2. Comprobar que, para todo número natural n mayor o igual que 1 se cumple que:  
+
+1). 7^n − 1 es múltiplo de 6.
+
+2). 7^2n + 16n − 1 es múltiplo de 64.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+1). Podemos, en primer lugar, obtener los términos a los que da lugar la expresión 7^n -1 para los primeros
+números naturales n y comprobar que sobre ellos se cumple la propiedad (esto es, que son múltiplos de 6). 
+Éste es el primer paso en una demostración por inducción. Así:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist((7^n-1)/6, n,1,30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Como en la lista anterior todas las entradas son números enteros, efectivamente la propiedad se satisface para los 
+primeros 30 números naturales. Supongamos ahora que 7^n − 1 es múltiplo de 6 (hipótesis de inducción), y probemos 
+que 7^(n+1) - 1 tambiéń lo es. 
+
+Veamos qué ocurre con la diferencia entre ambos términos:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+7^(n+1)-1-(7^n -1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Como vemos, lo de arriba no nos da información, pero si lo simplificamos:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+rat(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Luego la diferencia 7^(n+1)-1-(7^n -1) es múltiplo de 6. Ahora un sencillo razonamiento sobre divisibilidad 
+(si a y b-a son múltiplos de k, entonces b es múltiplo de k), concluye que 7^(n+1) − 1 es también 
+múltiplo de 6.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+2). Realizamos un procedimiento similar para probar la afirmación del segundo apartado. Primero comprobamos 
+que la propiedad se cumple para los primeros números naturales:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist((7^(2*n)+16*n-1)/64,n,1,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Tratando de usar el mismo razonamiento de divisibilidad que antes, calculamos la diferencia entre dos 
+términos consecutivos:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+(7^(2*(n+1))+16*(n+1)-1)-(7^(2*n)+16*n-1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Simplificamos:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+rat(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Esto no parece ser muy informativo. Probemos simplificar la expresión después de dividir entre 64, esperando obtener
+un número entero:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+rat([(7^(2*(n+1))+16*(n+1)-1)-(7^(2*n)+16*n-1)]/64);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Lo anterior sólo es un número entero para cada n natural (n>=1) si el numerador (3*7^(2n)+1) es un múltiplo
+de 4 para cada n. Esto nos remite a otro problema de inducción: para que el resultado de dividir por 64 sea 
+entero, hemos de probar que el numerador de esta fracción es múltiplo de 4 para cada n. Es claro que para 
+n=0 ocurre, así que volvemos a utilizar el recurso anterior de restar dos términos consecutivos:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+ 3*7^(2*(n+1))-3*7^(2*n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+rat(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(144);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Y como 144 es múltiplo de 4, tenemos probada nuestra propiedad.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+EJERCICIO 3. Comprobar que el polinomio  p(x) = x^2 + x + 41  produce números primos cuando x es 
+un número natural comprendido entre 1 y 30. Puede usarse el comando factor que proporciona la 
+descomposición en números primos de un número natural. ¿Es cierto que  n^2 + n + 41  es primo para 
+todo número natural n > 1? 
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+En primer lugar podemos crear una lista con los números que produce el polinomio para 
+valores naturales de x desde 1 hasta 30:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+L1:makelist(x^2+x+41,x,1,30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+A continuación, podemos crear una lista con la descomposición en factores primos de todos estos números:  
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+L2:makelist(factor(x^2+x+41),x,1,30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Alternativamente, podemos escribir:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+L2:makelist(factor(L1[i]),i,1,length(L1));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ahora podemos comparar las dos listas:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+is(L1=L2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Lo que concluye que, efectivamente, x^2+x+41 es un número primo para todo numero natural x entre 1 y 30 
+(ya que coincide con su factorización).  
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+También podríamos haber usado la función booleana primep, que devuelve true si ---con muy alta probabilidad---
+el argumento es un número primo y false si no lo es. Está basado en un test de primalidad.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(primep(x^2+x+41),x,1,30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Veamos si existe algún n natural para el que n^2 + n + 41 no es un número primo:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+x:1;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+p(x):=x^2+x+41;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+x:1$
+while factor(p(x))=p(x) do (x:x+1, if factor(p(x))#p(x) then print(x));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Obtenemos que el polinomio p(x) no produce un número primo al evaluarlo en x=40, es decir,
+que p(40) no es primo. Efectivamente:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(p(40));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Alternativamente,
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(n)$
+n:31$
+for i:1 while primep(n^2+n+41)=true do n:n+1;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+n;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+EJERCICIO 4. El monje francés Marin Mersenne afirmó en 1644 que los números de la forma 2^n-1 son primos
+para los valores n = 2, 3, 5, 7, 13, 17, 19, 31, 67, 127 y 257, y no lo son para el resto de números menores
+que 257. Comprobar la veracidad o no de dicha afirmación. ¿Es cierto que los números de la forma 2^p-1 son primos para todo 
+número primo p?
+
+Algunas curiosidades sobre los primos de Mersenne pueden leerse en
+
+http://primes.utm.edu/glosary/xpage/MersennesConjecture.html
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+L5:[2,3,5,7,13,17,19,31,67,127,257];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+for i:1 thru length(L5) do (
+    z:primep(2^L5[i]-1),
+    print(L5[i],z)
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Sucesiones predefinidas en wxMaxima.
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: input   start ] */
+load(functs);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Progresiones aritméticas.
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+1, 1+1*3, 1+2*3, 1+3*3, ... , 1+(n-1)*3
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+kill(n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+SUCESION ARITMETICA 1=VALOR inicial 3=la diferencia entre numeros y n=la variable
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+arithmetic(1,3,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+suma de los primeros 4 terminos
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+arithsum(1,3,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos pedirle a wxMaxima que nos muestre una lista de sumas parciales(suma de los primeros elementos) de una sucesión 
+aritmética:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(arithsum(1,3,i),i,1,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(arithsum(1,1,i),i,1,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(arithsum(1,1/4,i),i,1,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Progresiones geométricas.
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+1, 1*1/2, 1*(1/2)^2, 1*(1/2)^3, ... , 1*(1/2)^n (cada termino de la sucesion se obtiene de multiplicar el anterior por una razon(r))
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+geometric(1,1/2,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+geosum(1,1/2,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+geosum(1,1/2,inf);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+geosum(1,2,7);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Si n es infinito (n=inf), la suma será finita sólo si el valor absoluto de r es menor que 1.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+geosum(1,1/2,inf);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+geosum(1,2,inf);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(geosum(1,1/4,i),i,1,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Sucesiones armónicas.
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+1/2, 1/(2+1*3), (1/2+2*3), 1/(2+3*3), ... , 1/(2+(n-1)*3)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+harmonic(1,2,3,n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(harmonic(1,2,3,n),n,1,10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+harmonic(a,b,c,n) corresponde al término general a/(b+c*n).
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: section start ]
+Relaciones de recurrencia.
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+La sucesión de Fibonacci satisface una relación de recurrencia lineal homogénea con coeficientes constantes 
+y de orden 2:
+
+fib(0)=0,
+fib(1)=1,
+fib(n)= fib(n-1)+fib(n-2).
+
+He aquí una lista de sus primeros 21 términos: 
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(fib(i),i,0,20);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Definamos una relación de recurrencia de grado 1, no homogénea y no con coeficientes constantes. 
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+A0 : 4 /* valor inicial */;
+A[n] := if n>0 then F(n)*A[n-1]+G(n) else A0 /* relación de grado 1 */;
+F(n) := n^2 /* no es de coeficientes constantes */;
+G(n) := 2*n+1 /* no es homogénea */;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Observemos que en la definición de funciones por recurrencia utilizamos corchetes (en nuestro 
+ejemplo, para A), y en la definición de funciones explícitas utilizamos paréntesis (en nuestro ejemplo, 
+para las funciones F y G).
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(A[n],n,0,7);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ejercicio: Proponer una relación de recurrencia que sea satisfecha por la siguiente sucesión:
+
+{1,2,5,12,29,70,169,...}. (el anterior por dos + el anterior del anterior)
+
+Definir la correspondiente función recursiva en wxMaxima. Calcular los primeros 17 términos y 
+comprobar que la propuesta es acertada.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+B0:1;
+B1:2;
+B[n]:=if n=0 then B0 else if n>1 then 2*B[n-1]+B[n-2] else B1;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(B[n],n,0,16);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Resolución de relaciones de recurrencia.
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+Para la resolución de relaciones de recurrencia hay disponible en Maxima el paquete solve_rec, que cargamos
+a continuación:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(solve_rec);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+a a partir de aqui no estan bien la practica
+//---------------------------------------//
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos obtener la expresión del término general de la sucesión de Fibonacci resolviendo la relación 
+de recurrencia que verifica:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(f[j]=f[j-1]+f[j-2],f[j],f[0]=0,f[1]=1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Cuando no se fijan valores iniciales, el comando solve_rec devuelve una solución dependiente de parámetros:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[j]=a[j-1]+a[j-2],a[j]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Aquí, k1 y k2 son parámetros cuyo valor será determinado mediante la imposición de valores iniciales 
+(en este caso, dos valores iniciales, ya que la relación es de grado 2).
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=c*a[k-1],a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+EJERCICIO 6: Hallar la solución de la relación de recurrencia propuesto en el EJERCICIO 5, con las 
+condiciones iniciales correspondientes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec();
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+EJERCICIO 7: Determinar si son lineales, homogéneas y de coeficientes constantes las siguientes relaciones. 
+Resolverlas con los valores iniciales que se proporcionan.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+1) a[n]=2*n*a[n-1], a[1]=1 --> Relación de recurrencia lineal, homogénea, de coeficientes 
+no constantes y de orden 1.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[n]=2*n*a[n-1],a[n],a[1]=1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+2) a[n]=7*a[n-2]-6*a[n-3], a[1]=0, a[2]=1, a[3]=1 --> Relación de recurrencia lineal, 
+homogénea, de coeficientes constantes y de orden 3.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec( a[n]=7*a[n-2]-6*a[n-3], a[n],a[1]=0, a[2]=1, a[3]=1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+EJERCICIO 8: A continuación obtenemos las soluciones de otros tipos de relaciones de recurrencia.
+Decidir de qué tipo son. 
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=c*a[k-1]+b,a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=c*a[k-2]+b*a[k-1],a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=c*a[k-2]+b*a[k-1]+d,a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=k*a[k-1],a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=a[k-1]+(k-1),a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]*a[k-1]=c,a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=a[k-1]*a[k-2],a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+EJERCICIO 9: Para las relaciones anteriores que sean lineales y homogéneas y de coeficientes 
+constantes, calcular el polinomio característico asociado a la relación, las raíces de éste 
+y observar la relación entre estas raíces y la solución general.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Se observa que la solución general a[k] de la relación de recurrencia viene dada por una combinación 
+lineal de las potencias k-ésimas de las raíces x1,..., xi del polinomio característico de la relación, de 
+forma que 
+
+a[k] = c1*x1 + c2*x2 + ... + cs*xi
+
+donde c1, c2, ..., ci son coeficientes a determinar imponiendo las condiciones iniciales de la relación 
+de recurrencia.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+EJERCICIO 10. Resolver la siguiente recurrencia:
+
+x_0 = 0; 
+x_1 = 1; 
+x_n = 3*x_(n-1) - 2*x_(n-2) + 2^n + 2*n para n >= 2.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+El comando solve_rec nos proporciona la solución:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(solve_rec);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(x[n]= 3*x[n-1]-2*x[n-2]+2^n + 2*n, x[n], x[0]=0, x[1]=1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Pero podemos resolver la recurrencia prescindiendo del paquete solve_rec, empleando el método descrito en 
+clase con la ayuda de Maxima como calculadora. Para ello, podemos seguir los siguientes pasos:
+
+1º) Definimos una función memoizada(recursiva) basada en la recurrencia, que nos permita calcular los valores
+    iniciales necesarios de la sucesión solución.
+
+2º) Encontramos las raíces de la parte homogénea de su ecuación característica, y las reunimos
+    con las de la parte no homogénea que obtenemos de forma directa. 
+
+3º) Expresamos la fórmula del término general dependiente de unos coeficientes que hemos de 
+    calcular.
+
+4º) Resolvemos el sistema de ecuaciones obtenido de sustituir en la expresión anterior n por 
+    diferentes valores e igualarlo a los valores iniciales de la recurrencia obtenidos en 1º).
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+x[n]:= if n>1 then 3*x[n-1]-2*x[n-2]+ 2^n + 2*n else if  n>0 then x[1]:1 else x[0]:0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Como es una recurrencia de grado dos y la parte no homogénea incrementa el grado de la ecuación 
+característica en 3 más, requerimos 5 valores iniciales.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(x[i],i,0,4);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve(x^2-3*x+2,x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Luego la ecuación característica es (x-1)^3*(x-2)^2. A partir de ella definimos el término general:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+TG:  c1*2^n + c2*n*2^n + c3*1^n + c4*n*1^n + c5*n^2*1^n;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+equations: makelist(subst(i,n,TG)=x[i], i, 0,4);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+linsolve(equations, [c1,c2,c3,c4,c5]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Con lo que la expresión del término general para nuestra recurrencia, obtenido en 5 lineas de 
+Maxima sería:
+
+                            x[n] = n*2^(n+1) + 3*2^n - n^2 -5*n -3.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: title   start ]
+hacer estos ejercicios!!
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: comment start ]
+EJERCICIO 11. La sucesión de Fibonacci está dada por la recurrencia:
+
+   fib(n) = fib(n-1)+fib(n-2);  fib(0)=0, fib(1)=1,
+
+que produce la sucesión:  {0,1,1,2,3,5,8,13,21,34, ...)
+
+a). Definir una función para obtener los términos de la sucesión, primero en forma explícita y 
+luego en forma recurrente (con la técnica de Memoización: 
+
+http://es.wikipedia.org/wiki/Algoritmo_divide_y_vencer%C3%A1s
+
+)
+
+y comprobar la diferente eficiencia al calcular (comparando el tiempo de cálculo en Maxima), por 
+ejemplo el valor de f(30).
+
+b). Obtener la solución de esta recurrencia.
+
+c). Comprobar que la sucesión de cocientes de dos elementos consecutivos de la sucesión de 
+fibonacci tiende al número de oro, Phi.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+F[n]:= if n>1 then F[n-1]+F[n-2] else if n=1 then 1 else 0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F[2];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F[30];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fib(30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(solve_rec);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(f(n)=f(n-1)+f(n-2),f(n),f(0)=0,f(1)=1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(1.0*F[n+1]/F[n],n,1,500);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+http://www.uterra.com/juegos/torre_hanoi.htm
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+EJERCICIO 13. Para ordenar de manera ascendente una lista [a1,a2,...,an] de n números reales, 
+podemos utilizar el algoritmo "Bubble Sort". En él se empieza comparando a1 con a2. Si a1<a2 
+se dejan tal cual, y si a1>a2 entonces se intercambian estos valores en la lista. Luego se 
+repite el procedimiento con a2 y a3 y así sucesivamente hasta que, después de n-1 comparaciones, 
+el número más grande de la lista está al final. Se repite el proceso para los n-1 números restantes 
+hasta conseguir ordenar la lista completa.
+
+a). Obtener una relación de recurrencia para el procedimiento descrito.
+
+b). Obtener una función explícita que exprese la solución a la recurrencia anterior.
+
+c). Calcular algunos términos mediante la anterior función y también mediante una definición de 
+    la función directamente con técnicas recursivas (memoización).
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+C[n]:= if n >1 then C[n-1]+n-1 else 0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+C[0];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+C[4];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+C[6];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+C[20];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(solve_rec);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[n]=a[n-1]+n-1,a[n],a[1]=0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(1.0*C[n+1]/C[n],n,2,300);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

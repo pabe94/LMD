@@ -1,0 +1,182 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: input   start ] */
+Pablo MArtinez Ruano 2B LMD
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: title   start ]
+Práctica 4. Funciones booleanas.
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: comment start ]
+En Maxima, el álgebra de Boole con sólo dos elementos B={0,1}, está expresada por medio de 
+las constantes true y false, donde true representa el 1 y false representa el 0.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+B:{false,true};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Sus operadores "conjunción", "disyunción" y "negación" se expresan como "and", "or" y "not". Por ejemplo, 
+evalúemos las siguientes expresiones booleanas:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+true and false;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+false or true;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+not false;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+En particular, podemos definir funciones booleanas. 
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x,y,z):= (not (not x or (y and z))) and ( (x and y and not z) or (x and not y));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Esta función f: B^3 --> B toma valores en B^3 y nos devuelve un elemento de B, es decir, true o false.
+
+El conjunto B^3 es el producto cartesiano B x B x B. Podemos definirlo mediante:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+B3:cartesian_product(B,B,B);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Para evaluar f en los elementos de B^3, no podemos evaluar una lista directamente, ya que en la 
+definición de f, ésta no recibe listas como argumento:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f([false,true, true]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Para poder evaluar listas, definiremos una función auxiliar fl basada en f que sí recibe listas como
+argumento:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+fl(lista):= f(lista[1],lista[2],lista[3]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fl([false,true,true]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(true,false,true);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+La función subset(X,f), donde X es un conjunto y f una función booleana, nos devuelve el subconjunto de X 
+cuyos elementos verifican la función f. 
+
+Usando subset, podemos obtener los mintérminos que aparecen en la forma normal disyuntiva de la función booleana
+definida. 
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+minterm:subset(B3,fl);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Para expresarlos con su número correspondiente en la notación de mintérminos estudiada en clase, debemos interpretar 
+cada lista de valores booleanos como una lista de ceros y unos y, esta lista, como un número expresado en binario.
+A continuación, expresar este número en sistema decimal.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+EJERCICIO 1. 
+
+Definir los operadores XOR y NAND mediante dos funciónes xor(x,y) y nand(x,y). Indicación: por ejemplo, 
+xor(x,y) ha de devolver true si 
+
+x=true & y=false 
+
+o si
+
+x=false & y=true
+
+y ha de devolver false en otro caso. 
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+xor(x,y):= ((r and not s) or (not r and s));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+nand(x,y):=((r and not s) or (not r and s) or (not r and not s));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+EJERCICIO 2.
+
+Implementar una función "binary(n)" que devuelva la expresión en binario (como una lista de ceros y unos) 
+del número natural argumento n.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(basic);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+binary(n):= block(resultado:[],
+    B:remainder(n,2),
+    C:quotient(n,2),
+    while  C>0 do (    
+        resultado:append([B],resultado),
+        B:remainder(C,2),
+        C:quotient(C,2)
+    ),
+return(append([1],resultado))
+);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+binary(143);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+binary(10);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+EJERCICIO 3.
+
+Implementar una función "decimal(L)" que devuelva la expresión decimal del número en binario dado por una lista 
+argumento L de ceros y unos.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+decimal(L):= block(resultado:0, 
+    longitud:length(L)-1,
+    contador:1,
+    k:length(L),
+    n:0,
+    for n step 1 thru k do (      
+        resultado:(L[contador]*(2^longitud))+resultado,
+        print(resultado),
+        longitud:longitud-1,
+        contador:contador+1 
+    ),
+    return (resultado));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+decimal([1,1,1,1,1]);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

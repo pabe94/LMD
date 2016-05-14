@@ -1,0 +1,596 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 11.08.0 ] */
+
+/* [wxMaxima: title   start ]
+Relaciones binarias.
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: input   start ] */
+load("/home/esperanza/Escritorio/Práctica 2/relaciones.mac")$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+(Cargar paquete "relaciones.mac" --> Archivo --> Cargar paquete --> Seleccionar ubicación del paquete en nuestro PC)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: section start ]
+Propiedades de las relaciones binarias.
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos definir una relación binaria R declarando el conjunto de todos los elementos relacionados mediante R:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+R:{[a,b],[a,c],[b,c],[c,c],[d,b]};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Una vez definido, podemos preguntar por el mínimo conjunto que contiene a los elementos de las parejas:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+universo(R);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Ahora podemos preguntarnos si la relación R recién definida es reflexiva, simétrica, antisimétrica, transitiva, 
+conectada, etc.
+
+----------------------------------------------------------------------------------------------------------------
+
+Reflexiva: ∀ x ∈ U(R), (x,x)∈R.
+
+Simétrica: ∀ x,y, (x,y)∈R → (y,x)∈R.
+
+Antisimétrica: ∀ x,y, (x,y)∈R e (y,x)∈R → x=y. (Equivalentemente,  ∀ x,y∈U(R) distintos, (x,y)∈R → (y,x) NO ∈R.)
+
+Transitiva: ∀ x,y,z, (x,y)∈R y (y,z)∈R → (x,z)∈R.
+
+Conectada: ∀ x,y∈U(R), x distinto de y → (x,y)∈R o (y,x)∈R.
+
+-----------------------------------------------------------------------------------------------------------------
+
+
+Se entiende que todas estas preguntas son relativas al universo de la relación R.
+
+(Pero, ¿qué quiere decir que "estas propiedades son relativas al universo de R"?)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+R:{[a,b],[a,c],[b,c],[c,c],[d,b]};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_reflexiva(R);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+¿Por qué?
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+es_simetrica(R);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+¿Por qué?
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+es_antisimetrica(R);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+¿Por qué?
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+es_transitiva(R);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+¿Por qué? ¿Por qué? ¡Por qué!
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+es_conectada(R);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Definición:
+-----------
+
+Una relación binaria sobre un conjunto es *de orden* si es reflexiva, antisimétrica y transitiva.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+También podemos preguntarnos por las propiedades de la relación R sobre otros conjuntos distintos de su universo:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+R:{[a,b],[a,c],[b,c],[c,c],[d,b]};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A:{c};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_reflexiva(R);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_reflexiva(R,A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+B:{a,b,c};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_transitiva(R);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_transitiva(R,B);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Esto es equivalente a hallar la restricción de R al nuevo conjunto (lo que define una 'nueva' relación S) y 
+preguntarse por las propiedades de S.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+S:restriccion(R,B);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_transitiva(S);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_conectada(S);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+A continuación se listan varios ejemplos de relaciones (R1 y R2).
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+R1
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+R1:{[1,1],[2,2],[3,3],[1,2],[2,1],[2,3]};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+universo(R1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_reflexiva(R1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_simetrica(R1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_antisimetrica(R1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_transitiva(R1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_conectada(R1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+R2
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+R2:{[1,2],[2,1]};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+universo(R2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_reflexiva(R2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_simetrica(R2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_antisimetrica(R2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_transitiva(R2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_conectada(R2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Definición:
+-----------
+
+Una relación binaria es de *equivalencia* si es reflexiva, simétrica y transitiva. 
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+R:{[a,b],[a,c],[b,c],[c,c],[d,b]};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_equivalencia(R,universo(R));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Dado un conjunto A, una relación de equivalencia R sobre A define subconjuntos disjuntos en A, llamados
+"clases de equivalencia". La clase de equivalencia de a ∈ A se denota por [a] y se define como el conjunto
+
+[a] = {b ∈ A: b R a}.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+A:{1,2,3,4,5};
+I:identity_relation(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_equivalencia(I);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+clases_equivalencia(I);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+T:union(I,{[1,2],[2,1],[4,5],[5,4]});
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_equivalencia(T);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+clases_equivalencia(T);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Si A es un conjunto de números naturales, la siguiente relación binaria de divisibilidad
+
+(a|b si y sólo si existe un número natural q tal que a*q=b)
+
+define una relación de orden en A. 
+
+
+Podemos usar div(A) para obtener el conjunto de pares relacionados que define la relación de divisibilidad en A.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+A:{1,2,3,4,5,6};
+D:div(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_equivalencia(D);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_orden(D);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Definición:
+-----------
+
+Una relación de orden R sobre un conjunto A se dice *total* si ∀ x,y, (x,y)∈R →  xRy  ó  yRx.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+A:{1,2,3,4,5,6};
+DA:div(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_orden_total(DA);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+B:divisors(8);
+DB:div(B);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_equivalencia(DB);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_orden(DB);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_orden_total(DB);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Subconjuntos de números naturales ordenados por divisibilidad.
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+Consideremos dos subconjuntos de números naturales B y A tales que B ⊆ A:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+B:{1,2,3};
+A:{1,3,2,12,18};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Elementos notables absolutos y elementos notables relativos.
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Observemos que los elementos notables absolutos de B son los mismos en N o en A o en D(30) (¡o en cualquier
+otro conjunto!):
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+minimo(B);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+maximo(B);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+minimales(B);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+maximales(B);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+minimo(B,A);
+maximo(B,A);
+maximales(B,A);
+minimales(B,A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+minimo(B,30);
+maximo(B,30);
+minimales(B,30);
+maximales(B,30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Pero no ocurre así con los elementos notables relativos:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+B:{1,2,3};
+A:{1,3,2,12,18};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+minorantes(B);
+mayorantes(B);
+infimo(B);
+supremo(B);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+minorantes(B,A);
+mayorantes(B,A);
+infimo(B,A);
+supremo(B,A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+minorantes(B,30);
+mayorantes(B,30);
+infimo(B,30);
+supremo(B,30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Retículos y subretículos de números naturales.
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Definición: 
+-----------
+
+Un retículo es un conjunto ordenado L en el que cualquier conjunto finito tiene 
+supremo e ínfimo.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Dada una lista de conjuntos de números naturales,
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+A:{1,2,3,5,30};
+B:{2,6,10,30};
+C:{1,2,3,4,12};
+D:divisors(30);
+E:{1,2,3};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos preguntarnos si son retículos respecto a la relación de orden dada por divisibilidad:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+es_Ret(A);
+es_Ret(B);
+es_Ret(C);
+es_Ret(D);
+es_Ret(E);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos representar su diagrama de Hasse
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Hasse(A);
+Hasse(B);
+Hasse(C);
+Hasse(D);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Preguntarnos si son subrretículos de N
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+A:{1,2,3,5,30};
+B:{2,6,10,30};
+C:{1,2,3,4,12};
+D:divisors(30);
+E:{1,2,3};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+es_Sub_Ret(A);
+es_Sub_Ret(B);
+es_Sub_Ret(C);
+es_Sub_Ret(D);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Podemos hallar los elementos que tienen complemento en el retículo distributivo D(n)
+de los divisores de un número natural n.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+complementados(30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+O bien hallar los complementos de un elemento en un conjunto de naturales que sepamos
+que es retículo.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+complementos(10,divisors(30));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+complementos(2,{1,2,3,4,12});
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+complementos(3,{1,2,3,4,12});
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+También podemos hallar el complemento de un elemento concreto en D(n).
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+complementados(120);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+complemento(12,120);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+complemento(15,120);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: section start ]
+Álgebras de Boole.
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: comment start ]
+Definición:
+-----------
+
+Un álgebra de Boole es un retículo distributivo y complementado. 
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Dado un entero positivo n, denotamos por D(n) el conjunto de los divisores 
+positivos de n. Como ya hemos visto, en wxMaxima podemos obtener fácilmente el 
+conjunto D(n) mediante el comando divisors. Veamos algunos ejemplos.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+divisors(8);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+divisors(2014);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Sabemos que D(n) es un álgebra de Boole si y sólo si n factoriza como producto de 
+(uno ó más) primos distintos*, siendo las operaciones 
+
+a + b = a∨b = mcm(a, b), 
+
+a · b = a∧b = mcd(a, b), 
+
+_a = n/a .
+
+En particular, si n es un número primo, D(n) es un álgebra de Boole.
+
+
+*Potencias primeras de primos (el exponente de cada primo distinto ha de ser uno en la factorización de n).
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(12);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ifactors(12);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(2014);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ifactors(2014);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Por tanto, 
+
+-) D(12) no es un álgebra de Boole.
+
+-) D(2014) es álgebra de Boole.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+EJERCICIOS:
+
+(1) Implementar una función "product order(x,y)" que, dadas dos listas x e y (de la misma longitud) 
+de números naturales, las compare según el orden producto.    
+
+(2) Implementar una función "boole(n)" que, dado un número nattural n, devuelva true si D(n) es un álgebra de Boole.
+
+(3) Implementar una función "no_boole_set(m,n)" que, dados dos números naturales m y n, devuelva el conjunto de los
+números naturales p entre n y m tales que D(p) NO es álgebra de Boole.
+   [wxMaxima: comment end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

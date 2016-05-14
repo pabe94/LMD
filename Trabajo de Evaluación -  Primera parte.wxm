@@ -1,0 +1,1557 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 13.04.2 ] */
+
+/* [wxMaxima: title   start ]
+LÓGICA Y MÉTODOS DICSRETOS
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: title   start ]
+Trabajo de evaluación-Primera Parte
+   [wxMaxima: title   end   ] */
+
+/* [wxMaxima: section start ]
+Nombre y Apellidos: Jerónimo Garrido Lechuga
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: section start ]
+Subgrupo de prácticas: B3
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: section start ]
+Ejercicios a entregar
+   [wxMaxima: section end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 1:
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Calcular el término general explícito de las siguientes sumas de 
+términos:
+a) 2^2 + 4^2 + 6^2 + 8^2 + 10^2 + ... 
+b) 1 + 3^3 + 5^3 + 7^3 + 9^3 + ... 
+c) sum_{i=1}^n 1/((2i+1)*(2i-1))
+d) 3*2 + 3*4 + 3*8 + 3*16 + 3*32 + 3*64 + 3*128...
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+a) 2^2 + 4^2 + 6^2 + 8^2 + 10^2 + ...
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+b) 1 + 3^3 + 5^3 + 7^3 + 9^3 + ...
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+c) sum_{i=1}^n 1/((2i+1)*(2i-1))
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+d) 3*2 + 3*4 + 3*8 + 3*16 + 3*32 + 3*64 + 3*128...
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 2:
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Comprobar por inducción que 7^(2n) + 16n - 1 es múltiplo de 64 para todo número natural n >=1.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+lista:makelist(mod(7^(2*n)+16*n-1,64),n,1,3000)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+for i: 1 thru 3000 do(
+ if lista[i] # 0 then print("FALSO"));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Es cierto para n <=3000, y por tanto vamos a suponer que la propiedad es cierta.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+La demostración teórica la incluyo en un documento escrito a mano
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 3:
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+a) Hallar el menor entero positivo n0 para el cual n!>= 2^n.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+n0:1;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+for i:1 while n0!<2^n0 do(
+n0:n0+1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+n0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+El primer valor es 3. Luego la propiedad debería ser cierta para todo 
+n>=4
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+b) Hallar el menor entero n0 para el que n^2 + 6n + 8 >= 0.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Puesto que la suma de números positivos es mayor que 0, la propiedad se 
+cumple para todo natural.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Si no sólo se quisiera ver para naturales, se tendría que hacer lo 
+siguiente:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+n0:0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+for i:1 while n0^2+6*n0+8>=0 do(
+n0:n0-1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+n0:n0+1;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Por tanto, esta propiedad se verifica para n>=-2. Antes hemos probado 
+que es cierto para n>=0, y como lo es para n=-2 y para n=-1, lo es 
+para n>=-2
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 4: 
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+a) Comprobar que el polinomio  p(x) = x^2 + x + 41  produce números primos 
+cuando x es un número natural comprendido entre 1 y 30. Para ello, es 
+posible usar el comando "factor", que proporciona descomposición en 
+primos de un número natural.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+p(x):=x^2+x+41;
+makelist(factor(p(x)),x,1,30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+''Factor'' no descompone ninguno de ellos.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Para ver que no es cierto hay que buscar un elemento para el cual p(n0) 
+no sea primo:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist([i,factor(p(i))],i,31,40);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Para p(40) no es primo. Entonces el polinomio no devuelve primos para 
+todo natural.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+b) ¿Es cierto que  n^2 + n + 41  es primo para todo número natural n > 1? 
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+ev(n^2+n+41,n=40);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(1681);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+No es cierto ya que para n=40 se descompone el resultado
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 5: 
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+a) El monje francés Marin Mersenne afirmó en 1644 que los números de la 
+forma 2^n-1 son primos para los valores n = 2, 3, 5, 7, 13, 17, 19, 31, 
+67, 127 y 257, y no lo son para el resto de 
+números menores que 257. Compruébese. ¿Es cierto que los números de 
+la forma 2^p-1 son primos para todo número primo p?
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+ListaIndicesMersenne:[2,3,5,7,13,17,19,31,67,127,257];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+PrimosMersenne:[];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+for i:1 thru length(ListaIndicesMersenne) do(
+PrimosMersenne:append(PrimosMersenne,[2^ListaIndicesMersenne[i]-1]));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+PrimosMersenne;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+for i:1 thru length(ListaIndicesMersenne) do(
+print([i,PrimosMersenne[i], factor(PrimosMersenne[i])]));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ListaIndicesMersenne[9];
+ListaIndicesMersenne[11];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(2^11-1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Vemos que para p=67 y para p=257 2^p-1 no es primo.
+Por tanto todos los números de la forma 2^p-1 no son primos para todo primo 
+p ya que para p=67 no sale.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 6: 
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+a) Hallar una relación de recurrencia que genera la siguiente sucesión:
+{1, 2, 5, 12, 29, 70, 169, ...}.
+b) Definir la correspondiente función recursiva en wxMaxima.
+c) Calcular los primeros 7 términos y comprobar que la propuesta dada se 
+corresponde con los primeros 7 términos proporcionados de la sucesión.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+A0:1;
+A1:2;
+A2:5;
+A3:12;
+A4:29;
+A5:70;
+A6:169;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+La relación es An=2*A_(n-1)+A_(n-2)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+A[0]:1;
+A[1]:2;
+A[n]:=if n >= 2 then 2*A[n-1]+A[n-2]
+           else( if n=1 then 2 else (if n=0 then 1));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(A[n],n,0,6);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Se carga solve_rec
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(solve_rec);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[j]=2*a[j-1]+a[j-2],a[j],a[0]=1,a[1]=2,a[2]=5);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[j]=a[j-1]+a[j-2],a[j]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Se determina la solución general
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+A[n]=2*A[n-1]+A[n-2];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[n]=2*a[n-1]+a[n-2],a[n],a[0]=1,a[1]=2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A(n):=((sqrt(2.0)+1)^n*(sqrt(2.0)+2))/4-((1-sqrt(2.0))^
+n*(sqrt(2.0)-2))/4.0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(round(A(n)),n,0,6);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 7: 
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Hallar la solución para la relación de recurrencia propuesta en el 
+Ejercicio 5, con las condiciones iniciales apropiadas.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+En el ejercicio 5 no hay ninguna ecuación en recurrencia propuesta, si 
+consideramos que se refiere al ejercicio 6 ya está resuelto dentro del 
+mismo.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 8: 
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Decidir si son lineales, homogéneas y de coeficientes constantes las 
+siguientes relaciones:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+1)  a[n]=7*a[n-2]-6*a[n-3], a[1]=0, a[2]=1, a[3]=1;
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+La 1) es lineal homogénea y de coeficientes constantes
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+2) a[k]=c*a[k-1]+b;
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+La 2) es lineal no homogénea y de coeficientes constantes
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+3) a[k]=c*a[k-2]+b*a[k-1];
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+La 3) es lineal homogénea y de coeficientes constantes
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+4) a[k]=c*a[k-2]+b*a[k-1]+d;
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+La 4) es lineal no homogénea (si d es distinto de 0) y de coeficientes 
+constantes
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+5) a[k]=k*a[k-1];
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+La 5) es lineal homogénea y de coeficientes no constantes
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+6) a[k]=a[k-1]+k-1;
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+La 6) es lineal no homogénea y de coeficientes constantes
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+7) a[k]*a[k-1]=c;
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+La 7) es no lineal, no homogénea (a menos que c sea 0) y de coeficientes 
+constantes
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+8) a[k]=a[k-1]*a[k-2];
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+La 8) es no lineal homogénea y de coeficientes constantes
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Resolver las relaciones con los valores iniciales que se proporcionan en 
+cada caso
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 9: 
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Para cada relación del Ejercicio 7 que sea lineal, homogénea y de 
+coeficientes constantes, calcular el polinomio característico asociado a 
+la relación, las raíces de éste (para ello puede ser usado el comando 
+solve) y observar la relación entre estas raíces y la solución general.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Las relaciones 1) y 3) son lineales homogéneas y de coeficientes 
+constantes.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Se carga el paquete solve_rec:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(solve_rec);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Se calcula el polinomio asociado de la relación 1):
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[n]=7*a[n-2]-6*a[n-3],a[n],a[1]=0,a[2]=1,a[3]=1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve(x^3-7*x+6=0,x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Se calcula el polinomio asociado a la relación 3):
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[k]=c*a[k-2]+b*a[k-1],a[k]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+pol(x):=x^2-b*x-c;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve(pol(x)=0,x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 10: 
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+La sucesión de Fibonacci está dada por la recurrencia:
+        fib(n) = fib(n-1)+fib(n-2);  
+        fib(0)=0, 
+        fib(1)=1,
+que produce la sucesión:  {0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...}.
+
+1) Definir una función para obtener los términos de la sucesión, primero
+en forma explícita y luego en forma recurrente (con la técnica de 
+Memorización): 
+
+2) Obtener la solución de esta recurrencia.
+
+3) Comprobar que la sucesión de cocientes de dos elementos consecutivos 
+de la sucesión de Fibonacci tiende al número de oro, Phi.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Fib(n):=block([resultado,i,Fm1,Fm2],
+    Fm1:1,
+    Fm2:0,
+    if n=0 then(
+        resultado:0
+    )
+    else(
+        if n=1 then (
+        resultado:1)
+        else(
+            for i:2 thru n do(
+                resultado: Fm1+Fm2,
+                Fm2:Fm1,
+                Fm1:resultado)
+        )
+   ),
+return(resultado));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Fib(1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F[n]:= if n>1 then(
+            F[n-1]+F[n-2])
+       else
+         if n=1 then 1
+         else 
+            if n=0 then 0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F[1];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+is(Fib(10)=F[10]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F[3];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+showtime:true;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+F[400];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Fib(401);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(solve_rec);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[n]=a[n-1]+a[n-2],a[n],a[0]=0,a[1]=1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Se puede ver que la sucesión de cocientes de términos consecutivos 
+tiende al número de oro:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(1.0*Fib(n+1)/Fib(n),n,1,60);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+(1.0*1+sqrt(5.0))/2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 11: 
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Para el problema de las Torres de Hanoi:
+
+
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+a) Encontrar una definición recurrente que exprese el número de 
+movimientos mínimo a realizar para n torres.
+
+b) Dar una explicación concisa de por qué la fórmula recurrente 
+propuesta expresa, en efecto el número mínimo de movimientos a realizar 
+para n torres.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Tras analizar el problema comprendo que la ecuación en recurrencia es 
+la siguiente:A(n)=2*A(n-1)+1
+ya que para resolver un problema con n fichas, necesito el doble de 
+movimientos de la torre con n-1 fichas (más el movimiento de la base)
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+A[n]:= if n>0 then 2*A[n-1]+1 else 0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A[1];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A[3];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A[64];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+%/60.0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+%/60;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+%/24;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+%/365;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 12: 
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Si se quiere ordenar de manera ascendente n números reales 
+a1, a2,..., an dados, puede utilizarse para ello el algoritmo Bubble Sort:
+
+1) Obtener una relación de recurrencia para el procedimiento descrito.
+
+2) Obtener una función explícita que exprese la solución a la 
+recurrencia anterior.
+
+3) Calcular algunos términos mediante la función obtenida en el 
+apartado 2) y también mediante una definición de la función con técnicas
+recursivas (memorización).
+
+4) Considerar la sucesión de términos b(n)/b(n-1), donde b(n) es la 
+función que expresa la complejidad del algoritmo considerado en datos 
+de tamaño n. ¿Tiende (computacionalmente) esta sucesión hacia algún 
+valor? ¿Tiene alguna interpretación matemática este valor?
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Analizando el problema, y centrando la complejidad en las comparaciones,
+ nos damos cuenta de que el número de comparaciones para un vector de 
+longitud n, coincide con el número de comparaciones de un vector de 
+longitud (n-1) más las (n-1) comparaciones que hay que realizar en el 
+vector de longitud n.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+C[n]:= if n >1 then C[n-1]+n-1 else 0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+C[1];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+C[2];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+C[3];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+C[4];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+C[6];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+C[20];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(solve_rec);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve_rec(a[n]=a[n-1]+n-1,a[n],a[1]=0);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+c(n):=((n-1)*n)/2.0;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(c(n),n,1,15);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(1.0*C[n+1]/C[n],n,2,300);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+El resultado es que acaba estabilizándose. Si lo represenmtamos como 
+una función de puntos, se podría decir que alcanza una asíntota 
+cuando n tiende a +infinito.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 13: 
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Considera el siguiente conjunto 
+A:{48,60,64,84,52,100,96,128,156,88,212,176,360,512,296};
+ordenado por la relación de divisibilidad:
+a <= b si a|b, para todo a, b en A.
+
+Calcular: mayorantes, minorantes, supremo, ínfimo, maximales, 
+minimales, máximo y mínimo del conjunto ordenado A. Acompañar 
+cada cálculo de una frase breve interpretando el resultado. 
+(Si no el resultado totalmente, al menos, justificar la pertenencia 
+de alguno de sus elementos a cada conjunto (de maximales, minimales, 
+mayorantes,...), y la no pertenencia de alguno de los números de A a 
+cada uno de estos conjuntos.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Para realizar el ejercicio es necesario cargar el paquete divisores.mac
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load("C:/Users/Jero/Desktop/Ingeniería Informática/divisores.mac")$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A:{48,60,64,84,52,100,96,128,156,88,212,176,360,512,296};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Se procede a calcular los elementos notables
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Los mayorantes es el conjunto formado por todos los numeros que son 
+divisibles por cualquier número de A.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+mayorantes(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Los minorantes son los términos de n, que dividen a todo número de A.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+minorantes(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+El supremo es el mínimo de los mayorantes. En este caso es el mínimo 
+común múltiplo de todos los elementos de A.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+supremo(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+El ínfimo es el máximo de los minorantes. En este caso coincide con 
+el máximo común divisor.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+infimo(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Como el supremo no pertence al cojunto etonces no hay máximo.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+maximo(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Como el infimo no pertence al conjunto no hay mínimo.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+minimo(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Los maximales es el conjunto de elementos de a que no tienen a ningún 
+elemento de A mayor
+que ellos.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+maximales(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Los minimales es el cojunto de elementos de a que no tiene a ningún 
+elemento de A menor 
+que ellos.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+minimales(A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Algunos elementos son a la vez maximales y minimales.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 14:
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+¿Qué condiciones tiene que cumplir n para que el conjunto de los 
+divisores de n sea un conjunto totalmente ordenado? 
+
+Indicar el razonamiento de la respuesta e implementar una función 
+booleana que devuelva true si el conjunto de divisores del número natural
+de entrada es totalmente ordenado y false en caso contrario.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Un conjunto es totalmente ordenado si su diagrama de Hasse es una 
+''recta'', por lo que el conjunto de divisores tiene que estar determinado 
+por una potencia de un primo.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+BoolConjOrdenado(n):=is(length(ifactors(n))=1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+BoolConjOrdenado(15);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+BoolConjOrdenado(1024);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ifactors(8);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ifactors(64);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ifactors(15);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 15: 
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Calcular todos los números n <= 200 tales que el conjunto de los 
+divisores de n sea un conjunto totalmente ordenado.
+
+Sugerencia: 
+
+----------
+Ampliar la generalidad del procedimiento de cálculo anterior implementando 
+una función que devuelva el conjunto de números naturales n menores o 
+iguales que un número natural dado m tales que el conjunto de divisores 
+de n sea un cojunto totalmente ordenado.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+n=a^b con a y b naturales.;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(45);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+factor(27);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+length(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+length(factor(45));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ifactors(27);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+TOrdenado(n):=is(length(ifactors(n))<=1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+TOrdenado(23);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+TOrdenado(128);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ifactors(2^3*4^2*5^3*7^2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+makelist(i,i,1,200);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+candidatos:setify(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+TO:subset(candidatos,TOrdenado);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+lexinv(li1,li2):=orderlessp(reverse(li1),reverse(li2));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+lex(li1,li2):=orderlessp(li1,li2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sort(listify(cartesian_product({1,2,3},{a,b},{8,9})),lexinv);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sort(listify(cartesian_product({1,2,3},{a,b},{8,9})),lex);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 16:
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Sea X = {1,2,3,4,5,6,7} e Y = X x X x X. 
+Considérese en Y el orden lexicográfico.
+Dadas las siguientes parejas x, y de elementos de Y, determinar cuál 
+es mayor respecto del orden considerado.
+
+x=(1,4,7), y=(7,4,1).
+
+x=(4,2,1), y=(4,4,7).
+
+x=(6,4,5), y=(2,4,1).
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+X:{1,2,3,4,5,6,7};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Y:cartesian_product(X,X,X)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Y:sort(listify(Y),lex)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Se me ocurre que podría enumerar los elementos de Y. Una vez tengo 
+esto, asocio cada elemento que me den a su correspondiente valor. 
+Y veo qué natural es menor que qué otro.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Igual(li1,li2):= is(li1[1]=li2[1]) and is(li1[2]=li2[2]) and 
+                 is(li1[3]=lis2[3]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+lex([1,1,1],[1,2,3]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L1:[1,1,1];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+L2:[1,2,3];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Entre(a):=lex(L1,a) and lex(a,L2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+sublist(Y,Entre);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+EntreElemento(Y,Linf,Lsup):=block([lista],
+    L1:Linf,
+    L2:Lsup,
+    lista:sublist(Y,Entre),
+    if length(lista)=0 then 
+        if L1=L2 then print("Son iguales")
+        else (print("El primer elemento es mayor que el segundo"))
+    else(
+    return(sublist(Y,Entre))));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+EntreElemento(Y,[1,4,7],[7,4,1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+EntreElemento(Y,[4,2,1],[4,4,7]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+EntreElemento(Y,[6,4,5],[2,4,1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 17:
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Sea X = {1,2,3,4,5,6,7} e Y = X x X x X. 
+Considérese en Y el orden producto.
+Dadas las siguientes parejas x, y de elementos de Y, determinar cuál 
+es mayor respecto del orden considerado.
+
+x=(4,2,1), y=(5,6,2).
+
+x=(4,2,1), y=(1,4,7).
+
+x=(6,4,5), y=(2,4,1).
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+Prod(L1,L2):=if(L1[1]<=L2[1] and L1[2]<=L2[2] and L1[3]<=L2[3]) 
+             then true
+             else false;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Prod([2,2,2],[1,1,3]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+EntreP(a):=Prod(L1,a) and Prod(a,L2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+EntrePElemento(Y,Linf,Lsup):=block([lista],
+    L1:Linf,
+    L2:Lsup,
+    lista:sublist(Y,EntreP),
+    if length(lista)=0 then 
+        if L1=L2 then print("Son iguales")
+        else (print("El primer elemento es mayor que el segundo"))
+    else(
+    return(lista)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+EntrePElemento(Y,[4,2,1],[5,6,2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+EntrePElemento(Y,[4,2,1],[1,4,7]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+EntrePElemento(Y,[6,4,5],[2,4,1]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+x=(4,2,1), y=(5,6,2).
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+x=(4,2,1), y=(1,4,7).
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+x=(6,4,5), y=(2,4,1).
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 18:
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Obtener todos los enteros 100 <= n >= 400 tales que D(n) es un álgebra 
+de Boole. Ampliar la generalidad del procedimiento anterior implementando
+una función que devuelva el conjunto de números naturales n entre dos 
+números dados tales que D(n) es álgebra de Boole.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Defino el conjunto de todos los números entre 100 y 400 y los filtro por 
+la propiedad ser AB.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+ADBE(A,B):=resultado:subset(setify(makelist(i,i,A,B)),
+lambda([x],BoolConjOrdenado(x)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ADBE(100,400);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 19: 
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+a)Obtener todos los enteros 100 â‰¤ n â‰¤ 400 tales que D(n) no es 
+un álgebra de Boole.
+Sugerencia: 
+----------
+Ampliar la generalidad del procedimiento anterior implementando una 
+función que devuelva el conjunto de números naturales n entre dos números 
+dados tales que D(n) no es álgebra de Boole.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+NoADBE(A,B):=resultado:subset(setify(makelist(i,i,A,B)),
+lambda([x],not BoolConjOrdenado(x)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+NoADBE(100,400);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 20: 
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Comprobar que D(1741209542339) es un álgebra de Boole y que d = 1399667 
+
+
+pertenece a la misma. Calcular los átomos que aparecen en la 
+descomposición de d.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Se carga el paquete graphs
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+load(graphs)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+La siguiente función nos devuelve cuando un conjunto ordenado
+de la forma D(n) es un álgebra de Boole:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+esAB(n):=block([lisf,i,long],
+    lisf:ifactors(n),
+    long:length(lisf),
+    if is(apply("*",makelist(lisf[i][2],i,1,long))=1) then true
+    else false)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+esAB(1741209542339);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+elementp(1399667,divisors(1741209542339));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+atomos(1399667);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+lcm(listify(%));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 21: 
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Calcular el menor entero positivo n tal que D(n) es un álgebra de Boole 
+de cinco átomos y 10^5 â‰¤ n.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+encontrado:false;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+for i:100000 while not encontrado do(
+    if(esAB(i) and is(length(atomos(i))=5)) then return(i));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+esAB(100110);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+length(atomos(100110));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+atomos(100110);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Se define una función que nos diga si n se escribe
+como producto de cinco primos distintos:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(n):=is(length(ifactors(n))=5) and esAB(n);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(100109);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+X:setify(makelist(i,i,100000,200000))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Y:subset(X,f)$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+listify(Y)[1];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Los coátomos:
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomos(n):=block([la],
+    la:listify(atomos(n)),
+    setify(makelist(quotient(n,la[k]),k,1,length(la))))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomos(15);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomos(30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomos(210);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomos(8923932217);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+gcd(gcd(6,10),15);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+divisors(8923932217);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomos(8923932217);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+lcm(listify(%));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomoss(d,n):=block([lis,long],
+    lis:ifactors(quotient(n,d)),
+    long:length(lis),
+    setify(makelist(quotient(n,lis[i][1]),i,1,long)))$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomoss(2,30);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomoss(3,210);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomoss(697891,8923932217);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: comment start ]
+Todo álgebra de Boole finita se puede expresar como P(X) para
+algún conjunto X
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+X:{1,2,3,4,5};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+powerset(X);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+A:{2,4,5};B:{1,2,5};
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+union(A,B);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+intersection(A,B);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+setdifference(X,A);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+setdifference(X,B);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+atomos(X):=subset(powerset(X),lambda([a],is(length(a)=1)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+atomos({1,2,3,4,5});
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomos(X):=subset(powerset(X),lambda([a],is(length(a)=
+             length(X)-1)));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+coatomos({1,2,3,4,5});
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 22:
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Dados dos números naturales m y p, ¿para cuáles y cuántos números 
+naturales n <= m, D(n) es un álgebra de Boole con 2^p elementos? 
+Implementar una función tal que dados dos números naturales m y p 
+devuelva una lista en la que el primer argumento sea el número de álgebras 
+de Boole D(n) (con n <= m) con 2^p elementos y el segundo el conjunto 
+de tales n. 
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+divisors(23);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Cardinal(n):=length(divisors(n));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Cardinal(23);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+BoolConjOrdenado(23);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+AlBool22(m,p):=block([lista,i,contador],
+    contador:0,
+    lista:[],
+    for i:1 thru m do(
+        if is(length(divisors(i))=2^p) and BoolConjOrdenado(i) then(
+         lista:append(lista,[i]),
+         contador:contador+1)),
+    return([contador,lista]));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+AlBool22(100,1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+AlBool22(100000,4);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 23:
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Obtener una expresión mínima como suma de productos para la 
+función booleana
+f(x1,...,x7) = m0 + m2 + m14 + m15 + m42 + m43 + m44 + m45 + m90 + m91 + 
+               m94 + m100 + m101 + m111 + m103 + m123 + m124 + m127.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 24:
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Sea G el grafo definido como sigue:
+- Su conjunto de vértices es el conjunto de números naturales 
+comprendidos entre 1 y 15 (ambos inclusive).
+- Para cada dos vértices x e y, hay un lado que los une si |x-y| 
+toma los valores 4 ó 5.
+1)¿Es conexo? ¿Cuántas componentes conexas tiene G?
+2)¿Cuál es el número cromático de G? Obtener una coloración del grafo
+3)¿Cuántos caminos de longitud 3 hay entre los vértices 9 y 5?
+4)¿Cuál es la longitud menor de un ciclo de G?
+5)¿Es G bipartido? ¿Y plano?
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: subsect start ]
+Ejercicio 25:
+   [wxMaxima: subsect end   ] */
+
+/* [wxMaxima: comment start ]
+Construir un grafo que represente los movimientos del caballo de 
+ajedrez en un tablero n Ã— m.
+Indicaciones:
+------------
+A cada casilla se puede asignar un nÃºmero entre 0 y n*m-1. 
+Por ejemplo, es posible empezar a numerar de izquierda a derecha, 
+y de abajo hacia arriba. Así, la primera fila estará formada por las 
+casillas desde 0 hasta m âˆ’ 1. La segunda, por las casillas desde m 
+hasta 2m âˆ’ 1 y así sucesivamente:
+
+(n-1)Â·m    (n-1)Â·m+1   (n-1)Â·m+2  ... nÂ·m-1
+
+
+   .              .          .         .   
+
+
+   .              .          .         .
+
+
+   .              .          .         .
+
+
+
+
+
+   2m            2m+1       2m+2  ...  3m-1
+
+
+
+
+
+    m             m+1        m+2  ...  2m-1
+
+
+
+
+
+    0               1          2  ...   m-1
+
+
+
+Se define una función caballo que, aplicada a dos números x, y con x < y, 
+devuelva true si un caballo puede saltar de la casilla x hasta la 
+casilla y, y false en caso contrario. A partir de esta función, se 
+define una función ajedrez que, aplicada a dos números n, m, devuelva 
+un grafo con n*m vértices que represente los posibles movimientos del 
+caballo de ajedrez en un tablero n*m.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: comment start ]
+Defino una función caballo que me devuelva las posiciones del tablero a 
+las que puedo ir.
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+matrix([1,2],[3,4]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+addrow(matrix([1,2]),[3,4]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+matrix([1,2]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+matrix([]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Tablero(n,m):=block([tablero,i,j],
+    tablero:matrix(makelist(i,i,0,m-1)),
+    for i:1 thru n-1 do(
+        tablero:addrow(tablero,makelist(i*m+j,j,0,m-1))),
+    return(tablero));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Tablero(6,8);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Posicion(A,n,m):=block([posicion,tablero,i,j],
+    tablero:Tablero(n,m),
+    for i:1 thru n do(
+        for j:1 thru m do(
+            if (is(tablero[i,j]=A)) then posicion:[i,j])),
+    return(posicion));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+Posicion(3,3,3);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+PosicionValida(pos,n,m):=is(pos[1]>0) and is(pos[2]>0) and 
+                         is(pos[1]<=n) and is(pos[2]<=m);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+PosicionValida([3,4],3,3);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+PosPosicionCaballo(p,n,m):=block([posicion,posiciones],
+    posicion=Posicion(p,n,m),
+    posiciones=[posicion+[2,-1],posicion+[2,1],posi....],
+    posiciones=sublist(posiciones,lambda([x],PosicionValida(x,n,m))),
+return(posiciones))
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+[1,1]+[1,2];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+t:Tablero(2,2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+is(3=t[2,2]);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$
