@@ -1,0 +1,856 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: title   start ]
+Práctica 6. Lógica de Proposiciones.
+   [wxMaxima: title   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Desde el menú Archivo --> Cargar paquete, cargamos los paquetes logic_ops.mac y logica.mac, que nos permiten
+trabajar con proposiciones lógicas. Es importante que carguemos los paquetes en este orden para no obtener 
+mensajes de error.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/*load("/home/esperanza/Escritorio/P6/logic.lisp")$*/;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/*load("/home/esperanza/Escritorio/P6/logic_ops.mac")$*/
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+/*load("/home/esperanza/Escritorio/P6/logic.mac")$*/
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+file_search(logic);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load(%);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: caption start ]
+/home/esperanza/Escritorio/P6/table.png
+   [wxMaxima: caption end   ] */
+/* [wxMaxima: image   start ]
+png
+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CC3NlkA693pN/2LVh7xD2vUEz79gOHVs1m832b0why/LOzk7gIWjbPvOfCJLp+X6xI4SwD5vneRritt1uw5KG510JV7GJEGKcfYV5CvKnQAx49h3H6qd0Os0echxnTFRXO+jWApuR/dlutz2KKjAF2oRNgWh7bFM0m01PypBRVZV99NlsFoLdwc98Pk8IMU2TngA3haproMSUyeF07Z2dHVb+QQDoCR5hADPUmNcGvkM81q08zz/22GPR7eDpm4FkMpk4p0Xz9a9//YMf/ODrr7/uPwQD9z7znwgGuCVZURT6P8/zruuurq7CT/heBin3wH62QwzsriLH6LrOcRz7dS9JErVb29nZ0XWd7n44dOgQa+Mwnvibsf884cXBtlIqlZIk6fjx4/1n3hvZbJZ99NlsttlsHjt2DH5+4hOfSKfTFy5coCfALA0yEkbStTVNc12XGjjMz8/ruq7rOvw0TRM2igCiKNLBTcdrPWxubmYyGc+c3h133OEXuR765vb2dv/vnHe961233377ysrKyy+/7DmU1Cti/BmgmYZnvrUHO9dUKiUIgmma8W2gTdMUBIFd+wF7cfh/c3Mzn89zHCeKIoySxt8aZxDT1pZl+fsPz/Pnz59PvKyYsIsW5NrKwblz506ePEkI+eVf/uXz58+LopjNZufn523bHueVuV3PSLo2aA52vEX1JSEETFLr9bplWa7rsnqr47Uenn76aX/vmJmZ8QdBTrBv3nfffezILA7f/OY3n3rqqWeffRZie04b425hCLNG/eQA89Tw/9GjRzOZjK7rL774omVZsJFo/LVX4nhM6imXL18eel0IIaRWq124cMEf4YkdPx46dMh1XVg5F0WxWCzCtP6Qq4okRbdd22+qw2LbNswlKIoCPZrVXtHXehhJ79A07eMf/3j885977rlPfvKTDz/88HTqLTL+qgvWYOKfz/O8ZyqMpVKpwLCdENJqtRRFUVV1ClVXWJOGmS0NGrrlM2IsTAhJpVL0YcGHNaquyaXbrp1Op8M0UKlUyufziqKEhXmMuNbPSHrHm970pje96U0xT/7+97//4IMPViqVqdVbZMzd7zYaDcdxbrvttviXwBy3x5cXnT+E7UFAKpXSdX1K5oU9SJLkNyt3HGdUmiCdTkuSxLp0g0dGUxqNxp133lkul+kJpmlyHDegrZ3IoOmha8Mul62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
+   [wxMaxima: image   end   ] */
+
+/* [wxMaxima: comment start ]
+Los operadores reconocidos por Maxima son los mostrados en la tabla de arriba.
+
+La primera columna nos indica el comando del operador lógico y la segunda la forma en que éste 
+se escribe. Un operador de tipo prefijo significa que se escribe delante de los operandos, 
+mientras que uno de tipo infijo se escribe entre los operandos a los que se aplica. 
+La etiqueta n-ario significa que el operador se puede aplicar a más de un operando, escribiéndolo 
+de forma infija. La tercera columna nos informa de la precedencia del operador, esto es, ordena la
+actuación de los operadores lógicos en una proposición (regla de prioridad). Los operadores con 
+mayor precedencia se evalúan antes y, en caso de empate, se consideran de izquierda a derecha. 
+La última columna indica el nombre y los símbolos con los que cada operador se suele representar.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+Tablas de verdad.
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+A lo largo de esta práctica usaremos las letras P, Q, R... para denotar variables 
+proposicionales, es decir, fórmulas atómicas. Algunos ejemplos de proposiciones lógicas 
+escritas con la sintaxis que acabamos de definir son:
+
+true, false, not P, P or Q, P implies (Q and R), P nand Q, (P eq Q) eq R
+
+donde true denota una proposición tautológica y false una proposición contradictoria 
+o contradicción.
+
+El valor de verdad de una proposición se representa también mediante true y false.
+Esto no crea ningún conflicto con lo anterior, pues en cualquier aparición de true o false, 
+el contexto nos informará si se trata de una proposición o de un valor de verdad.
+
+Comenzamos estudiando el comando characteristic_vector(prop) que nos proporciona la tabla
+de verdad de la proposición prop. Probemos los siguientes ejemplos:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P implies Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P implies (Q implies P));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Como podemos ver, éste último nos informa de que toda proposición de la forma P -> (Q -> P) es 
+una tautología.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Como sabemos, el operador lógico or (v) verifica la propiedad asociativa y por tanto 
+no requiere el uso de paréntesis. Podemos comprobarlo como sigue:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+characteristic_vector((P or Q) or R);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P or (Q or R));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P or Q or R);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El operador xor (⊕) es también un operador asociativo.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P xor (Q xor R));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+characteristic_vector((P xor Q) xor R);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Sin embargo, implies (-->) no verifica la propiedad asociativa.:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+X:characteristic_vector(P implies (Q implies R));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Y:characteristic_vector((P implies Q) implies R);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+is(X=Y);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+Z:characteristic_vector(P implies Q implies R);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+is(Y=Z);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Como vemos, escribir P implies Q implies R es equivalente a escribir (P implies Q) implies R. Tal y 
+como advertíamos antes, en caso de empate entre operadores, se asigna más prioridad de izquierda a derecha.
+
+Hemos visto que el comando characteristic_vector calcula la tabla de verdad de una proposición
+lógica a partir de las variables proposicionales con las que se construye dicha proposición.
+
+Este comando admite también el siguiente formato:
+
+characteristic_vector(prop, [var_1, ..., var_n])
+
+que nos proporciona la tabla de verdad de la proposición prop respecto a las variables 
+var_1,...,var_n que le indiquemos. Por defecto, en caso de omision de las variables, se considera
+el orden de aparición de las mismas. Por ejemplo, es indiferente escribir cualquiera de los 
+dos comandos siguientes:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P implies Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P implies Q,[P,Q]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Notemos que el orden de las variables influye en la construcción de la tabla de verdad de la proposición 
+correspondiente.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P implies Q,[Q,P]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P implies Q,[P]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+En este último ejemplo hemos construído la tabla de verdad de la fórmula P implies Q sólo respecto
+a la variable P. Dado que dicha fórmula también depende de Q, los valores de la tabla de verdad resultantes 
+se expresan en función de Q.
+
+Ahora ya entenderá la salidas devueltas por los comandos siguientes.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(P implies Q,[R]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(true);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(true,[P]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+characteristic_vector(true,[P,Q]);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Definición: equivalencia lógica.
+--------------------------------
+
+Dos proposiciones lógicas α y β pertenecientes a un lenguaje de proposiciones L, se dice que son
+equivalentes si para cualquier interpretación I sobre L se verifica que I(α) = I(β). 
+Dicho de otro modo, α y β son equivalentes si la proposición α ↔ β es una tautología.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ejercicio 1. Con lo visto hasta ahora, ¿cómo podría comprobarse que dos proposiciones lógicas
+son o no equivalentes?
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+El comando logic_equiv(expr_1,expr_2) devuelve true si las proposiciones representadas por
+expr_1 y expr_2 son equivalentes, y false en caso contrario.
+
+Claramente, la proposición representada por expr es una tautología si y sólo si logic_equiv(expr, true)
+devuelve true, y es una contradicción si y sólo si logic_equiv(expr, false) devuelve true.
+
+Pruebe con las siguientes instrucciones.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ejercicio 2. Usando el comando logic_equiv, ¿cómo podemos conocer si una proposición dada es 
+
+(1) una tautología?
+
+(2) una contradicción?
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+logic_equiv(P implies Q, not P or Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ejercicio 3. 
+
+Para cada una de las proposiciones siguientes, determinar si es tautología, satisfacible, refutable o
+contradicción.
+
+1. ¬(P ∧¬Q∧R) → (R → (P → Q))
+
+2. (P ∨Q) → (P ∧Q)
+
+3. (Q∨¬R) → (P → P )
+
+4. (P ∧Q)∧¬(¬P → Q)
+
+5. P ↔ (Q ↔ (P ↔ Q))
+
+6. (P → (Q∨R))∨(P → (Q∧R))
+
+7. (P → Q) → ((Q → R) → (P → R))
+
+8. ¬((P → Q)∨(P → (¬Q)))
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Definición: consecuencia lógica.
+--------------------------------
+
+Dadas las proposiciones α1 , α2 , . . . , αn , β, se verifica que el conjunto 
+Ω = {α1 , α2 , . . . , αn } implica semánticamente a β si y sólo si el conjunto 
+{α1 , α2 , . . . , αn , ¬β} es insatisfacible. También se dice que β es consecuencia 
+lógica de Ω y se denota por Ω |= β . Esto a su vez equivale a que la proposición
+α1 ∧ α2 ∧ · · · ∧ αn ∧ ¬β sea una contradicción.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ejercicio 4.
+
+Dado el conjunto de proposiciones Ω = {P → (Q∧R), Q → S, P ∧T },
+determine cuáles de las proposiciones siguientes son consecuencia lógica de Ω.
+
+1. β = S.
+
+2. β = ¬T ∧R.
+
+3. β = ¬S → (¬P ∨T ).
+
+4. β = ¬T ∨Q.
+
+5. β = S ↔ Q.
+
+6. β = ¬Q∧S .
+
+7. β = S → Q.
+
+8. β = S∨¬R.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: section start ]
+Expresiones equivalentes.
+   [wxMaxima: section end   ] */
+
+
+/* [wxMaxima: comment start ]
+Los siguientes comandos transforman proposiciones en otras equivalentes.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Polinomio de Gegalkine.
+-----------------------
+
+Sabemos que toda función booleana f se representa de modo único como un polinomio involucrando sólo a 
+los operadores xor (⊕) y and (∧, también denotado por un punto) así como a la constante lógica 1 (que
+estamos representando por true). Éste es el llamado polinomio de Gegalkine de f. Esta
+misma idea también es aplicable a las proposiciones lógicas.
+
+El comando zhegalkin_form(expr) calcula el polinomio de Gegalkine de la proposición representada
+por expr.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form(not P);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form(P implies Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form(P and Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form(P or Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form(P eq Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form(P eq Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Por supuesto, si la proposición dada es ya su propio polinomio de Gegalkine, la salida es
+naturalmente dicha proposición. Es lo que ocurre en los siguientes casos.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form(true);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form(P and Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form(P xor Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form((P and Q) xor true);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+zhegalkin_form((P and Q and R) xor P xor (Q and R));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+(Conviene recordar que el operador and tiene más prioridad que xor.)
+
+El comando boolean_form(expr) escribe la proposición expr sólo en función de los 
+operadores not, or y and. La única excepción se produce cuando expr es true o false. 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+boolean_form(P implies Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+boolean_form(P eq Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+boolean_form((P implies Q) implies R);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+boolean_form(((P implies Q) implies R) implies S);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+boolean_form(true);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Como se puede observar en las respuestas obtenidas, no se intenta simplificar más nada.
+
+El comando demorgan(expr) aplica las leyes de De Morgan a expr.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+demorgan(not (P or Q));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+demorgan(not (P and Q));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+demorgan(not (P and Q and R));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+demorgan(not not P);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Este comando hay que usarlo tras haber aplicado boolean_form, pues de lo contrario no transforma
+la expresión, como sucede en los siguientes ejemplos.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+demorgan(P implies Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+demorgan(boolean_form(P implies Q));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+demorgan(P implies Q implies R);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+demorgan(boolean_form((P implies Q) implies R));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+demorgan(P implies Q implies R and not(S));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+demorgan(boolean_form(P implies Q implies R and not(S)));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+El comando logic_simp(expr) devuelve una versión simplificada equivalente a expr.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+logic_simp(not not not P);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+logic_simp(P or (Q or false or (P or Q)));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+logic_simp(P xor true xor Q xor true);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+logic_simp(boolean_form(((P implies Q) implies R) implies S));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+logic_simp(boolean_form(((P implies Q) implies R) implies S));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Como pone de manifiesto la última respuesta obtenida, la salida de este comando puede dejar
+mucho que desear.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Forma normal conjuntiva y forma normal disyuntiva.
+--------------------------------------------------
+
+Imitando lo que ocurre con las funciones booleanas, toda proposición lógica se puede expresar 
+usando los operadores lógicos ¬, ∧, ∨. De este modo obtenemos la forma normal conjuntiva y la 
+forma normal disyuntiva de una proposición lógica. En Maxima, éstas se obtienen con los comandos 
+pcnf y pdnf, respectivamente.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pcnf(not P);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pdnf(not P);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pcnf(P and Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pdnf(P and Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pcnf(P or Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pdnf(P or Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pcnf(P implies Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pdnf(P implies Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pcnf(P eq Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pdnf(P eq Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pcnf(P nor Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pdnf(P nor Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pcnf(P nand Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pcnf(P nand Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pdnf(P nand Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pcnf(P xor Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pdnf(P xor Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pcnf(((P implies Q) implies R) implies S);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+pdnf(((P implies Q) implies R) implies S);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Definición: conjunto de operadores funcionalmente completo.
+-----------------------------------------------------------
+
+Un conjunto de operadores lógicos ∆ se dice funcionalmente completo si cualquier 
+operador lógico se puede expresar en términos de los operadores pertenecientes a ∆.
+
+El comando functionally_complete(expr_1,...,expr_n) devuelve true sii {expr_1,...,expr_n}
+define un sistema funcionalmente completo.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Por ejemplo, sabemos que el conjunto {¬, ∨, ∧} es funcionalmente completo. Comprobémoslo:
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+functionally_complete(P and Q, P or Q, not P);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+También sabemos que toda proposición lógica α se expresa en términos de los operadores true, and, xor, 
+resultando el polinomio de Gegalkine de α.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+functionally_complete(P and Q, P xor Q, true);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Nótese que si suprimimos la constante true en el conjunto antorior, ya no tenemos un conjunto funcionalmente 
+completo.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+functionally_complete(P and Q, P xor Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Los conjuntos {nor} y {nand} también son funcionalmente completos.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+functionally_complete(P nor Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+functionally_complete(P nand Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Por supuesto, si a un conjunto funcionalmente completo le añadimos un nuevo operador, 
+resulta otro conjunto funcionalmente completo.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+functionally_complete(P nor Q, P implies Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Definción: base lógica.
+-----------------------
+
+Un conjunto de operadores ∆ se llama una base lógica si ∆ es funcionalmente completo y al
+suprimir cualquier operador en ∆, el conjunto resultante ya no es funcionalmente completo. 
+También se dice que ∆ es un conjunto funcionalmente completo minimal.
+
+Podemos comprobar que un conjunto de operadores ∆ es una base lógica de manera 'artesanal' usando
+el comando functionally_complete. Para ello, hemos de comprobar que ningún subconjunto propio de ∆ 
+es funcionalmente completo.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ejercicio 5.
+
+Comprobar aplicando la idea expuesta en el párrafo anterior que el conjunto de operadores 
+{and, xor, true} es funcionalmente completo.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+functionally_complete(P and Q, P xor Q, true);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+functionally_complete(P and Q, P xor Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+functionally_complete(P and Q, true);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+functionally_complete(P xor Q, true);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Otra posibilidad consiste en utilizar el comando logic_basis(expr_1,...,expr_n) que devuelve
+true sii {expr_1,...,expr_n} es una base lógica. 
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+logic_basis(P and Q, P xor Q, true);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+logic_basis(P and Q, P or Q);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+logic_basis(P and Q, P or Q, not P);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+logic_basis(P and Q, not P);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+logic_basis(P or Q, not P);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+logic_basis(P and Q, P xor Q, true);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ejercicio 6. 
+
+Justificar que el conjunto de operadores {¬, →} es una base lógica: primero teóricamente y, a
+continuación, haciendo uso de Maxima.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ejercicio 7.
+
+Representar cada una de las proposiciones siguientes en función de los operadores del conjunto
+{¬, →} y comprobar en cada caso que la expresión obtenida es equivalente a la inicial.
+
+a) P ∧ Q
+
+b) P ∧ Q ∧ R
+
+c) P ∨ Q
+
+d) P ∨ Q ∨ R
+
+e) P ↔ Q
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ejercicio 8. 
+
+Encontrar una proposición lógica que se represente de dos formas distintas en función de los operadores ¬ y →.
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: comment start ]
+Ejercicio 9. 
+
+Si α es una proposición lógica que es una contradicción, justificar que toda proposición lógica se
+puede expresar usando el operador lógico → y α. A continuación compruebar esto mismo utilizando Maxima.
+   [wxMaxima: comment end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$
